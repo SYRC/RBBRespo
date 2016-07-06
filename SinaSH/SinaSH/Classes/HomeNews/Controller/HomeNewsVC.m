@@ -54,6 +54,7 @@
 
 - (void)loadDataWithIndex:(NSInteger)index
 {
+    
     NSString *urlStr = [NSString stringWithFormat:@"http://api.sina.cn/sinago/list.json?channel=%@",[[_orignArray[index] allKeys] firstObject]];
     [[NetManager shareManager] requestUrl:urlStr WithSuccessBlock:^(id data) {
         NSMutableArray *arrayTemp = [[NSMutableArray alloc] init];
@@ -93,6 +94,7 @@
 
 
 #pragma mark ScrollTableViewDelegate
+//通知代理索引为section的tableview中第row个cell被点击
 - (void)didSelectedTableViewCellWithSection:(NSInteger)section AndRow:(NSInteger)row
 {
     NewsModel *newsModel = _totalNewsArray[section][row];
@@ -104,6 +106,7 @@
     
 }
 
+//返回指定索引的TableView有多少个Cell
 - (NSInteger)tableViewNumberOfRowsInSection:(NSInteger)section
 {
     NSLog(@"%ld",section);
@@ -111,21 +114,25 @@
     return [_totalNewsArray[section] count];
 }
 
+//返回指定索引的TableView的指定Row的cell数据
 - (NewsModel*)newsModelWithTableViewSection:(NSInteger)section andCellRow:(NSInteger)row
 {
     return _totalNewsArray[section][row];
 }
 
+//返回指定索引的TableView中Cell的样式
 - (UINib*)getNibWithTableSection:(NSInteger)section
 {
     return [UINib nibWithNibName:@"HomeNewsCell" bundle:nil];
 }
 
+//要求代理去获取指定TableView所需的数据
 - (void)loadTableViewDataWithSection:(NSInteger)section
 {
     [self loadDataWithIndex:section];
 }
 
+//通知代理当前显示页数(section)发生变化
 - (void)currentPageNumberChanged:(NSInteger)currentPage
 {
     [_btnScroll scrollBtnListWithIndex:currentPage];

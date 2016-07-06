@@ -27,6 +27,7 @@
 
 - (void)requestUrl:(NSString*)url WithSuccessBlock:(SuccessBlock)successB andFailedBlock:(FailedBlock)failB
 {
+    
     [self.sessionManager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         successB([NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil]);

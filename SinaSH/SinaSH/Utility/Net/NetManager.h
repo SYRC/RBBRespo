@@ -18,4 +18,6 @@ typedef void (^FailedBlock) (NSError *error);
 
 - (void)requestUrl:(NSString*)url WithSuccessBlock:(SuccessBlock)successB andFailedBlock:(FailedBlock)failB;
 
+//- (void)requestUrl:(NSString*)url WithSuccessBlock:(SuccessBlock)successB andFailedBlock:(FailedBlock)failB andShowLoding:(BOOL)loading;
+
 @end

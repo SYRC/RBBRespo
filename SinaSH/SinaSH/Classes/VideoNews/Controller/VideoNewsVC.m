@@ -157,35 +157,6 @@
     [PlayerView playInView:currentView AndFrame:rect AndUrl:model.videoUrl];
     return;
     
-    
-    
-    if(self.player != nil && row == _playRow && section == _playSection){
-        [self.player pause];
-        self.player = nil;
-        [self.playerLayer removeFromSuperlayer];
-        self.playerLayer = nil;
-        return;
-    }
-    
-    if(self.player != nil){
-        [self.player pause];
-    }
-    
-    self.player = nil;
-    _player = [[AVPlayer alloc] initWithURL:[NSURL URLWithString:model.videoUrl]];
-    if(self.playerLayer != nil){
-        [self.playerLayer removeFromSuperlayer];
-    }
-    self.playerLayer = nil;
-    _playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
-    _playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-    _playerLayer.frame = CGRectMake(SCREEN_WIDTH*section,120*row, SCREEN_WIDTH, 100);
-    
-    [_player play];
-    _playRow = row;
-    _playSection = section;
-    UITableView *tableV = [self.scrollTableView.scrollV viewWithTag:100+section];
-    [tableV.layer addSublayer:_playerLayer];
 }
 /*
 #pragma mark - Navigation
